@@ -3,7 +3,14 @@
     <img
       :width="width"
       :height="height"
-      src="/assets/logo.svg"
+      src="/assets/logo.png"
+      :alt="$t(defaultTitle)"
+      style="padding-right: 20px"
+    >
+    <img
+      :width="width"
+      :height="height"
+      src="/assets/ivago.png"
       :alt="$t(defaultTitle)"
     >
   </router-link>

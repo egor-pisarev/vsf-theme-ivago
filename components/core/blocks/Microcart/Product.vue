@@ -1,11 +1,11 @@
 <template>
   <li class="row py10 bg-cl-white" :class="{ 'relative': editMode }">
     <div class="mx10 w-100 py10 mb15 edit-mode flex between-xs middle-xs" v-if="editMode">
-      Edit mode
+      {{ $t('Edit mode') }}
       <button class="brdr-none bg-cl-transparent" @click="closeEditMode">
         <span class="cl-accent">
           <i class="material-icons cl-accent mr5">
-            close
+            {{ $t('close') }}
           </i>
         </span>
       </button>
@@ -20,7 +20,7 @@
         <div class="flex w-100 flex-wrap between-xs">
           <div>
             <router-link
-              class="serif h4 name"
+              class=" h4 name"
               :to="productLink"
               data-testid="productLink"
               @click.native="$store.commit('ui/setMicrocart', false)"
@@ -61,29 +61,29 @@
         </div>
         <div class="flex mr10 align-right start-xs between-sm prices">
           <div class="prices" v-if="!displayItemDiscounts || !isOnline">
-            <span class="h4 serif cl-error price-special" v-if="product.special_price">
+            <span class="h4  cl-error price-special" v-if="product.special_price">
               {{ product.price_incl_tax * product.qty | price(storeView) }}
             </span>
-            <span class="h6 serif price-original" v-if="product.special_price">
+            <span class="h6  price-original" v-if="product.special_price">
               {{ product.original_price_incl_tax * product.qty | price(storeView) }}
             </span>
-            <span class="h4 serif price-regular" v-else data-testid="productPrice">
+            <span class="h4  price-regular" v-else data-testid="productPrice">
               {{ (product.original_price_incl_tax ? product.original_price_incl_tax : product.price_incl_tax) * product.qty | price(storeView) }}
             </span>
           </div>
           <div class="prices" v-else-if="isOnline && product.totals">
-            <span class="h4 serif cl-error price-special" v-if="product.totals.discount_amount">
+            <span class="h4  cl-error price-special" v-if="product.totals.discount_amount">
               {{ product.totals.row_total - product.totals.discount_amount + product.totals.tax_amount | price(storeView) }}
             </span>
-            <span class="h6 serif price-original" v-if="product.totals.discount_amount">
+            <span class="h6  price-original" v-if="product.totals.discount_amount">
               {{ product.totals.row_total_incl_tax | price(storeView) }}
             </span>
-            <span class="h4 serif price-regular" v-if="!product.totals.discount_amount">
+            <span class="h4  price-regular" v-if="!product.totals.discount_amount">
               {{ product.totals.row_total_incl_tax | price(storeView) }}
             </span>
           </div>
           <div class="prices" v-else>
-            <span class="h4 serif price-regular">
+            <span class="h4  price-regular">
               {{ (product.regular_price || product.price_incl_tax) * product.qty | price(storeView) }}
             </span>
           </div>
@@ -95,7 +95,7 @@
             <div class="h6 cl-bg-tertiary mr10">
               {{ option.label }}:
             </div>
-            <div class="flex flex-wrap pt5" v-if="option.label == 'Color' && editMode">
+            <div class="flex flex-wrap pt5" v-if="option.label == 'Цвет' && editMode">
               <color-selector
                 v-for="filter in getAvailableFilters[option.attribute_code]"
                 v-if="isOptionAvailable(filter)"
@@ -105,7 +105,7 @@
                 @change="changeEditModeFilter"
               />
             </div>
-            <div class="flex flex-wrap pt5" v-else-if="option.label == 'Size' && editMode">
+            <div class="flex flex-wrap pt5" v-else-if="option.label == 'Размер' && editMode">
               <size-selector
                 class="mr10 mb10"
                 v-for="filter in getAvailableFilters[option.attribute_code]"

@@ -184,7 +184,7 @@
             {{ $t('Shipping method') }}
           </h4>
           <div v-for="(method, index) in shippingMethods" :key="index" class="col-md-6">
-            <label class="radioStyled"> {{ method.method_title }} | {{ method.amount | price(storeView) }}
+            <label class="radioStyled"> {{ method.method_title }}
               <input
                 type="radio"
                 :value="method.method_code"
@@ -245,7 +245,7 @@
               </h4>
             </div>
             <div class="col-md-6 mb15">
-              <label class="radioStyled"> {{ getShippingMethod().method_title }} | {{ getShippingMethod().amount | price(storeView) }}
+              <label class="radioStyled"> {{ getShippingMethod().method_title }}
                 <input type="radio" value="" checked disabled name="chosen-shipping-method">
                 <span class="checkmark" />
               </label>
@@ -279,6 +279,20 @@ export default {
   },
   mixins: [Shipping],
   computed: {
+    shippingMethods () {
+      return [{
+        amount: 0,
+        available: true,
+        base_amount: 0,
+        carrier_code: 'transport.transport',
+        carrier_title: 'Транспортной компанией',
+        error_message: '',
+        method_code: 'transport.transport',
+        method_title: 'Уточняется у менеджера',
+        price_excl_tax: 0,
+        price_incl_tax: 0
+      }]
+    },
     countryOptions () {
       return this.countries.map((item) => {
         return {

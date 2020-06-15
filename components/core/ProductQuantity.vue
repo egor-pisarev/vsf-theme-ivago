@@ -80,7 +80,7 @@ export default {
     },
     name () {
       if (this.isSimpleOrConfigurable && !this.loading && this.showQuantity) {
-        return this.$i18n.t(this.isOnline ? 'Quantity available' : 'Quantity available offline', { qty: this.maxQuantity })
+        return this.$i18n.t(this.isOnline ? 'Quantity available {qty}' : 'Quantity available offline {qty}', { qty: this.maxQuantity })
       }
       return this.$i18n.t('Quantity')
     }

@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <main-slider />
     <head-image />
 
     <promoted-offers />
@@ -42,6 +43,8 @@ import LazyHydrate from 'vue-lazy-hydration'
 // Theme core components
 import ProductListing from 'theme/components/core/ProductListing'
 import HeadImage from 'theme/components/core/blocks/MainSlider/HeadImage'
+import MainSlider from 'theme/components/core/blocks/MainSlider/MainSlider'
+
 // Theme local components
 import Onboard from 'theme/components/theme/blocks/Home/Onboard'
 import PromotedOffers from 'theme/components/theme/blocks/PromotedOffers/PromotedOffers'
@@ -59,6 +62,7 @@ export default {
     }
   },
   components: {
+    MainSlider,
     HeadImage,
     Onboard,
     ProductListing,

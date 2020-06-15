@@ -46,15 +46,15 @@
                 >
                   {{ getCurrentProduct.errors | formatProductMessages }}
                 </div>
+
                 <div class="h5" v-for="option in getProductOptions" :key="option.id">
                   <div class="variants-label" data-testid="variantsLabel">
-                    {{ option.label }}
                     <span
                       class="weight-700"
                     >{{ getOptionLabel(option) }}</span>
                   </div>
                   <div class="row top-xs m0 pt15 pb40 variants-wrapper">
-                    <div v-if="option.label == 'Color'">
+                    <div v-if="option.label == 'Цвет'">
                       <color-selector
                         v-for="filter in getAvailableFilters[option.attribute_code]"
                         :key="filter.id"
@@ -63,7 +63,7 @@
                         @change="changeFilter"
                       />
                     </div>
-                    <div class="sizes" v-else-if="option.label == 'Size'">
+                    <div class="sizes" v-else-if="option.label == 'Размер'">
                       <size-selector
                         class="mr10 mb10"
                         v-for="filter in getAvailableFilters[option.attribute_code]"
@@ -84,7 +84,7 @@
                       />
                     </div>
                     <span
-                      v-if="option.label == 'Size'"
+                      v-if="option.label == 'Размер'"
                       @click="openSizeGuide"
                       class="p0 ml30 inline-flex middle-xs no-underline h5 action size-guide pointer cl-secondary"
                     >
@@ -155,13 +155,20 @@
                 :attribute="attr"
                 empty-placeholder="N/A"
               />
+              <product-attribute
+                :key="attr.attribute_code"
+                v-for="attr in getInformationAttributes"
+                :product="getCurrentProduct"
+                :attribute="attr"
+                empty-placeholder="N/A"
+              />
             </ul>
           </div>
           <div class="details-overlay" @click="showDetails" />
         </div>
       </div>
     </section>
-    <lazy-hydrate when-idle>
+    <lazy-hydrate when-idle v-if="false">
       <reviews
         :product-name="getCurrentProduct.name"
         :product-id="getCurrentProduct.id"
@@ -169,13 +176,13 @@
         :product="getCurrentProduct"
       />
     </lazy-hydrate>
-    <lazy-hydrate when-idle>
+    <lazy-hydrate when-idle v-if="false">
       <related-products type="upsell" :heading="$t('We found other products you might like')" />
     </lazy-hydrate>
-    <lazy-hydrate when-idle>
+    <lazy-hydrate when-idle v-if="false">
       <promoted-offers single-banner />
     </lazy-hydrate>
-    <lazy-hydrate when-idle>
+    <lazy-hydrate when-idle v-if="false">
       <related-products type="related" />
     </lazy-hydrate>
     <SizeGuide />
@@ -297,6 +304,22 @@ export default {
         error: this.getThumbnail(this.getCurrentProduct.image, config.products.thumbnails.width, config.products.thumbnails.height),
         loading: this.getThumbnail(this.getCurrentProduct.image, config.products.thumbnails.width, config.products.thumbnails.height)
       }
+    },
+    getInformationAttributes () {
+      return [
+        {
+          attribute_code: 'attribute_10006',
+          frontend_label: i18n.t('Sizes')
+        },
+        {
+          attribute_code: 'attribute_10007',
+          frontend_label: i18n.t('Amount in a package')
+        },
+        {
+          attribute_code: 'attribute_10008',
+          frontend_label: i18n.t('Material')
+        }
+      ];
     },
     getCustomAttributes () {
       return Object.values(this.attributesByCode || [])
