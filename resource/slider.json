@@ -1,26 +1,25 @@
 {
-  "slides": [
-    {
-      "title": "Luma Yoga",
-      "subtitle": "New collection",
-      "button_text": "Shop now",
-      "image": "/assets/slide_01.jpg",
-      "link": "/women.html"
-    },
-    {
-      "title": "Luma Fitness",
-      "subtitle": "Collection",
-      "button_text": "Shop now",
-      "image": "/assets/slide_02.jpg",
-      "link": "/men.html"
-    },
-    {
-      "title": "Luma Fitness",
-      "subtitle": "What's new",
-      "button_text": "Shop now",
-      "image": "/assets/slide_03.jpg",
-      "link": "/training.html"
-    }
-  ],
-  "total": "3"
+    "slides": [{
+            "title": "Одежда для спорта и активного отдыха",
+            "subtitle": "Новая коллекция",
+            "button_text": "В каталог",
+            "image": "/assets/slide_01.jpg",
+            "link": "/women.html"
+        },
+        {
+            "title": "Коллекция Зима и Лето",
+            "subtitle": "Для мужчин и женщин",
+            "button_text": "Купить сейчас",
+            "image": "/assets/slide_02.jpg",
+            "link": "/men.html"
+        },
+        {
+            "title": "Спортивные костюмы",
+            "subtitle": "Оптом",
+            "button_text": "Выбрать",
+            "image": "/assets/slide_03.jpg",
+            "link": "/training.html"
+        }
+    ],
+    "total": "3"
 }

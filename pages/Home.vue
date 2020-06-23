@@ -1,40 +1,14 @@
 <template>
   <div id="home">
-    <main-slider />
-    <head-image />
-
-    <promoted-offers />
-
-    <section class="new-collection container px15">
-      <div>
-        <header class="col-md-12">
-          <h2 class="align-center cl-accent">
-            {{ $t('Everything new') }}
-          </h2>
-        </header>
-      </div>
-      <div class="row center-xs">
-        <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
-          <product-listing columns="4" :products="getEverythingNewCollection" />
-        </lazy-hydrate>
-        <product-listing v-else columns="4" :products="getEverythingNewCollection" />
-      </div>
-    </section>
-
-    <section v-if="isOnline" class="container pb60 px15">
-      <div class="row center-xs">
-        <header class="col-md-12" :class="{ pt40: getEverythingNewCollection && getEverythingNewCollection.length }">
-          <h2 class="align-center cl-accent">
-            {{ $t('Get inspired') }}
-          </h2>
-        </header>
-      </div>
-      <tile-links />
-    </section>
-    <Onboard />
+    <div class="container">
+      <!-- <main-slider /> -->
+      <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
+        <product-listing :columns="defaultColumn" :products="getProducts" />
+      </lazy-hydrate>
+      <product-listing v-else :columns="defaultColumn" :products="getProducts" />
+    </div>
   </div>
 </template>
-
 <script>
 // query constructor
 import { isServer, onlineHelper } from '@vue-storefront/core/helpers'
@@ -43,7 +17,7 @@ import LazyHydrate from 'vue-lazy-hydration'
 // Theme core components
 import ProductListing from 'theme/components/core/ProductListing'
 import HeadImage from 'theme/components/core/blocks/MainSlider/HeadImage'
-import MainSlider from 'theme/components/core/blocks/MainSlider/MainSlider'
+// import MainSlider from 'theme/components/core/blocks/MainSlider/MainSlider'
 
 // Theme local components
 import Onboard from 'theme/components/theme/blocks/Home/Onboard'
@@ -58,21 +32,26 @@ import { RecentlyViewedModule } from '@vue-storefront/core/modules/recently-view
 export default {
   data () {
     return {
-      loading: true
+      loading: true,
+      defaultColumn: 4
     }
   },
   components: {
-    MainSlider,
-    HeadImage,
-    Onboard,
-    ProductListing,
-    PromotedOffers,
-    TileLinks,
-    LazyHydrate
+    // MainSlider,
+    LazyHydrate,
+    ProductListing
   },
   computed: {
     ...mapGetters('user', ['isLoggedIn']),
     ...mapGetters('homepage', ['getEverythingNewCollection']),
+    ...mapGetters({
+      getProducts: 'product/getProducts',
+      getCurrentSearchQuery: 'category-next/getCurrentSearchQuery',
+      getCategoryProducts: 'category-next/getCategoryProducts',
+      getCurrentCategory: 'category-next/getCurrentCategory',
+      getCategoryProductsTotal: 'category-next/getCategoryProductsTotal',
+      getAvailableFilters: 'category-next/getAvailableFilters'
+    }),
     categories () {
       return this.getCategories
     },
