@@ -1,11 +1,11 @@
 <template>
   <div id="home">
+    <main-slider />
     <div class="container">
-      <!-- <main-slider /> -->
       <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
-        <product-listing :columns="defaultColumn" :products="getProducts" />
+        <product-listing :columns="defaultColumn" :products="getHomeProducts" />
       </lazy-hydrate>
-      <product-listing v-else :columns="defaultColumn" :products="getProducts" />
+      <product-listing v-else :columns="defaultColumn" :products="getHomeProducts" />
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ import LazyHydrate from 'vue-lazy-hydration'
 // Theme core components
 import ProductListing from 'theme/components/core/ProductListing'
 import HeadImage from 'theme/components/core/blocks/MainSlider/HeadImage'
-// import MainSlider from 'theme/components/core/blocks/MainSlider/MainSlider'
+import MainSlider from 'theme/components/core/blocks/MainSlider/MainSlider'
 
 // Theme local components
 import Onboard from 'theme/components/theme/blocks/Home/Onboard'
@@ -28,6 +28,7 @@ import { mapGetters } from 'vuex'
 import config from 'config'
 import { registerModule } from '@vue-storefront/core/lib/modules'
 import { RecentlyViewedModule } from '@vue-storefront/core/modules/recently-viewed'
+import onBottomScroll from '@vue-storefront/core/mixins/onBottomScroll'
 
 export default {
   data () {
@@ -36,14 +37,15 @@ export default {
       defaultColumn: 4
     }
   },
+  mixins: [onBottomScroll],
   components: {
-    // MainSlider,
+    MainSlider,
     LazyHydrate,
     ProductListing
   },
   computed: {
     ...mapGetters('user', ['isLoggedIn']),
-    ...mapGetters('homepage', ['getEverythingNewCollection']),
+    ...mapGetters('homepage', ['getHomeProducts']),
     ...mapGetters({
       getProducts: 'product/getProducts',
       getCurrentSearchQuery: 'category-next/getCurrentSearchQuery',
@@ -79,6 +81,19 @@ export default {
   mounted () {
     if (!this.isLoggedIn && localStorage.getItem('redirect')) this.$bus.$emit('modal-show', 'modal-signup')
   },
+  methods: {
+    async onBottomScroll () {
+      if (this.loadingProducts) return
+      this.loadingProducts = true
+      try {
+        await this.$store.dispatch('homepage/loadMoreHomeProducts')
+      } catch (e) {
+        Logger.error('Problem with fetching more products', 'category', e)()
+      } finally {
+        this.loadingProducts = false
+      }
+    }
+  },
   watch: {
     isLoggedIn () {
       const redirectObj = localStorage.getItem('redirect')
@@ -91,9 +106,11 @@ export default {
     Logger.info('Calling asyncData in Home Page (core)')()
 
     await Promise.all([
-      store.dispatch('homepage/fetchNewCollection'),
-      store.dispatch('promoted/updateHeadImage'),
-      store.dispatch('promoted/updatePromotedOffers')
+      store.dispatch('homepage/loadHomeProducts')
+      // store.dispatch('homepage/fetchNewCollection'),
+      // store.dispatch('promoted/updateHeadImage'),
+      // store.dispatch('promoted/updatePromotedOffers')
+      // store.dispatch('category-next/loadCategoryProducts', { route, category: currentCategory, pageSize })
     ])
   },
   beforeRouteEnter (to, from, next) {

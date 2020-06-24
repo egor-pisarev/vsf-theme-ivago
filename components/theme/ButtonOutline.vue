@@ -51,7 +51,6 @@ $black: color(black);
 
 .button-outline {
   border: 2px solid;
-  height: 62px;
 }
 
 @media screen and (min-width: 900px) {
