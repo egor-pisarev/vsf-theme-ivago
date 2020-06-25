@@ -72,23 +72,10 @@
           >
             <router-link
               class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
-              :to="localizedRoute('/sale')"
+              :to="localizedRoute('/news')"
               exact
             >
-              {{ $t('Sale') }}
-            </router-link>
-          </li>
-          <li
-            v-if="isCurrentMenuShowed"
-            @click="closeMenu"
-            class="bg-cl-secondary"
-          >
-            <router-link
-              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
-              :to="localizedRoute('/magazine')"
-              exact
-            >
-              {{ $t('Magazine') }}
+              {{ $t('news') }}
             </router-link>
           </li>
           <li
