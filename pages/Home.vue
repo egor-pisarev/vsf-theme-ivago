@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <main-slider />
-    <div class="container">
+    <div class="container mt20">
       <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
         <product-listing :columns="defaultColumn" :products="getHomeProducts" />
       </lazy-hydrate>

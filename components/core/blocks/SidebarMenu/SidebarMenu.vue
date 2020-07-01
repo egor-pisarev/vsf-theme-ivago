@@ -75,7 +75,7 @@
               :to="localizedRoute('/news')"
               exact
             >
-              {{ $t('news') }}
+              {{ $t('News') }}
             </router-link>
           </li>
           <li
