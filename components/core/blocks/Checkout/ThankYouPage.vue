@@ -37,11 +37,6 @@
             <p v-if="OfflineOnly && isNotificationSupported && isPermissionGranted">
               <strong>{{ $t('You will receive Push notification after coming back online. You can confirm the order by clicking on it') }}</strong>
             </p>
-            <p v-if="!isPermissionGranted && isNotificationSupported">
-              <button-outline color="dark" @click.native="requestNotificationPermission()">
-                {{ $t('Allow notification about the order') }}
-              </button-outline>
-            </p>
             <p>
               <button-outline
                 color="dark"
@@ -51,27 +46,6 @@
               </button-outline>
             </p>
             <div id="thank-you-extensions" />
-          </div>
-          <div class="col-md-6 bg-cl-secondary thank-you-improvment">
-            <h3>
-              {{ $t('What we can improve?') }}
-            </h3>
-            <p class="mb25">
-              {{ $t('Your feedback is important for us. Let us know what we could improve.') }}
-            </p>
-            <form @submit.prevent="sendFeedback">
-              <base-textarea
-                class="mb25"
-                type="text"
-                name="body"
-                v-model="feedback"
-                :placeholder="$t('Type your opinion')"
-                :autofocus="true"
-              />
-              <button-outline color="dark">
-                {{ $t('Give a feedback') }}
-              </button-outline>
-            </form>
           </div>
         </div>
       </div>

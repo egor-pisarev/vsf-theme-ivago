@@ -12,6 +12,7 @@
       :height="height"
       src="/assets/ivago.png"
       :alt="$t(defaultTitle)"
+      class="hidden-xs"
     >
   </router-link>
 </template>

@@ -126,12 +126,12 @@
               />
             </div>
             <div class="row py40 add-to-buttons">
-              <div class="col-xs-6 col-sm-3 col-md-6">
+              <div class="col-xs-12 col-sm-3 col-md-12">
                 <AddToWishlist :product="getCurrentProduct" />
               </div>
-              <div class="col-xs-6 col-sm-3 col-md-6">
+              <!-- <div class="col-xs-6 col-sm-3 col-md-6">
                 <AddToCompare :product="getCurrentProduct" />
-              </div>
+              </div> -->
             </div>
           </div>
         </section>
@@ -502,8 +502,9 @@ $bg-secondary: color(secondary, $colors-background);
 }
 
 .product-name {
+  font-size: 36px;
   @media (max-width: 767px) {
-    font-size: 36px;
+    font-size: 20px;
   }
 }
 

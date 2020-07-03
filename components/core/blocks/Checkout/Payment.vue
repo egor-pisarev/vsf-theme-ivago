@@ -39,7 +39,7 @@
             </h4>
           </div>
           <div v-for="(method, index) in paymentMethods" :key="index" class="col-md-6">
-            <label class="radioStyled"> {{ method.title ? method.title : method.name }}
+            <label class="radioStyled"> {{ method.title ? $t(method.title) : $t(method.name) }}
               <input
                 type="radio"
                 :value="method.code"
@@ -99,7 +99,7 @@
               <h4>{{ $t('Payment method') }}</h4>
             </div>
             <div class="col-md-6 mb15">
-              <label class="radioStyled"> {{ getPaymentMethod().title }}
+              <label class="radioStyled"> {{ $t(getPaymentMethod().title) }}
                 <input type="radio" value="" checked disabled name="chosen-payment-method">
                 <span class="checkmark" />
               </label>
@@ -145,35 +145,6 @@ export default {
     if (!this.generateInvoice) {
       return {
         payment: {
-          firstName: {
-            required,
-            minLength: minLength(2),
-            unicodeAlpha
-          },
-          lastName: {
-            required,
-            unicodeAlpha
-          },
-          country: {
-            required
-          },
-          streetAddress: {
-            required,
-            unicodeAlphaNum
-          },
-          apartmentNumber: {
-            required,
-            unicodeAlphaNum
-          },
-          zipCode: {
-            required,
-            minLength: minLength(3),
-            unicodeAlphaNum
-          },
-          city: {
-            required,
-            unicodeAlpha
-          },
           paymentMethod: {
             required
           }
@@ -182,43 +153,6 @@ export default {
     } else {
       return {
         payment: {
-          firstName: {
-            required,
-            minLength: minLength(2),
-            unicodeAlpha
-          },
-          lastName: {
-            required,
-            unicodeAlpha
-          },
-          company: {
-            required,
-            unicodeAlphaNum
-          },
-          taxId: {
-            required,
-            minLength: minLength(3)
-          },
-          country: {
-            required
-          },
-          streetAddress: {
-            required,
-            unicodeAlphaNum
-          },
-          apartmentNumber: {
-            required,
-            unicodeAlphaNum
-          },
-          zipCode: {
-            required,
-            minLength: minLength(3),
-            unicodeAlphaNum
-          },
-          city: {
-            required,
-            unicodeAlpha
-          },
           paymentMethod: {
             required
           }

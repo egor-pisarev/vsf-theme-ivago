@@ -6,7 +6,7 @@
     >
       <div class="container px15">
         <div class="row between-xs middle-xs" v-if="!isCheckoutPage || isThankYouPage">
-          <div class="col-md-4 col-xs-2 middle-xs">
+          <div class="col-md-1 col-xs-2 middle-xs">
             <div>
               <hamburger-icon class="p15 icon bg-cl-secondary pointer" />
             </div>
@@ -14,7 +14,18 @@
           <div class="col-xs-2 visible-xs">
             <search-icon class="p15 icon pointer" />
           </div>
-          <div class="col-md-4 col-xs-4 center-xs pt5">
+          <div class="col-xs-2 visible-xs center-xs pt5">
+            <div>
+              <logo width="auto" height="41px" />
+            </div>
+          </div>
+          <div class="col-md-2 col-xs-2 center-xs">
+              <phone-icon class="p15 icon pointer" number="+78005112302">8(800)511-23-02</phone-icon>
+          </div>
+          <div class="col-md-2 col-xs-1 center-xs hidden-xs">
+              <phone-icon class="p15 icon pointer" number="+79133952306">8(913)395-23-06</phone-icon>
+          </div>
+          <div class="col-md-4 hidden-xs center-xs pt5">
             <div>
               <logo width="auto" height="41px" />
             </div>
@@ -22,7 +33,7 @@
           <div class="col-xs-2 visible-xs">
             <wishlist-icon class="p15 icon pointer" />
           </div>
-          <div class="col-md-4 col-xs-2 end-xs">
+          <div class="col-md-3 col-xs-2 end-xs">
             <div class="inline-flex right-icons">
               <search-icon class="p15 icon hidden-xs pointer" />
               <wishlist-icon class="p15 icon hidden-xs pointer" />
@@ -38,9 +49,7 @@
               <router-link
                 :to="localizedRoute('/')"
                 class="cl-tertiary links"
-              >
-                {{ $t('Return to shopping') }}
-              </router-link>
+              >{{ $t('Return to shopping') }}</router-link>
             </div>
           </div>
           <div class="col-xs-2 col-md-6 center-xs">
@@ -65,18 +74,19 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import CurrentPage from 'theme/mixins/currentPage'
-import AccountIcon from 'theme/components/core/blocks/Header/AccountIcon'
-import CompareIcon from 'theme/components/core/blocks/Header/CompareIcon'
-import HamburgerIcon from 'theme/components/core/blocks/Header/HamburgerIcon'
-import Logo from 'theme/components/core/Logo'
-import MicrocartIcon from 'theme/components/core/blocks/Header/MicrocartIcon'
-import SearchIcon from 'theme/components/core/blocks/Header/SearchIcon'
-import WishlistIcon from 'theme/components/core/blocks/Header/WishlistIcon'
+import { mapState } from "vuex";
+import CurrentPage from "theme/mixins/currentPage";
+import AccountIcon from "theme/components/core/blocks/Header/AccountIcon";
+import CompareIcon from "theme/components/core/blocks/Header/CompareIcon";
+import HamburgerIcon from "theme/components/core/blocks/Header/HamburgerIcon";
+import Logo from "theme/components/core/Logo";
+import MicrocartIcon from "theme/components/core/blocks/Header/MicrocartIcon";
+import SearchIcon from "theme/components/core/blocks/Header/SearchIcon";
+import WishlistIcon from "theme/components/core/blocks/Header/WishlistIcon";
+import PhoneIcon from "theme/components/core/blocks/Header/PhoneIcon";
 
 export default {
-  name: 'Header',
+  name: "Header",
   components: {
     AccountIcon,
     CompareIcon,
@@ -84,68 +94,69 @@ export default {
     Logo,
     MicrocartIcon,
     SearchIcon,
-    WishlistIcon
+    WishlistIcon,
+    PhoneIcon
   },
   mixins: [CurrentPage],
-  data () {
+  data() {
     return {
       navVisible: true,
       isScrolling: false,
       scrollTop: 0,
       lastScrollTop: 0,
       navbarHeight: 54
-    }
+    };
   },
   computed: {
     ...mapState({
       isOpenLogin: state => state.ui.signUp,
       currentUser: state => state.user.current
     }),
-    isThankYouPage () {
+    isThankYouPage() {
       return this.$store.state.checkout.isThankYouPage
         ? this.$store.state.checkout.isThankYouPage
-        : false
+        : false;
     }
   },
-  beforeMount () {
+  beforeMount() {
     window.addEventListener(
-      'scroll',
+      "scroll",
       () => {
-        this.isScrolling = true
+        this.isScrolling = true;
       },
       { passive: true }
-    )
+    );
 
     setInterval(() => {
       if (this.isScrolling) {
-        this.hasScrolled()
-        this.isScrolling = false
+        this.hasScrolled();
+        this.isScrolling = false;
       }
-    }, 250)
+    }, 250);
   },
   methods: {
-    gotoAccount () {
-      this.$bus.$emit('modal-toggle', 'modal-signup')
+    gotoAccount() {
+      this.$bus.$emit("modal-toggle", "modal-signup");
     },
-    hasScrolled () {
-      this.scrollTop = window.scrollY
+    hasScrolled() {
+      this.scrollTop = window.scrollY;
       if (
         this.scrollTop > this.lastScrollTop &&
         this.scrollTop > this.navbarHeight
       ) {
-        this.navVisible = false
+        this.navVisible = false;
       } else {
-        this.navVisible = true
+        this.navVisible = true;
       }
-      this.lastScrollTop = this.scrollTop
+      this.lastScrollTop = this.scrollTop;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
 $color-icon-hover: color(secondary, $colors-background);
 
 header {

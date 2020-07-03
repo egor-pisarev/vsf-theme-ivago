@@ -10,7 +10,7 @@
           <i class="material-icons">{{ favoriteIcon }}</i>
         </div>
       </AddToWishlist>
-      <AddToCompare :product="product">
+      <!-- <AddToCompare :product="product">
         <div
           class="product__icon"
           :class="{'product__icon--active':isOnCompare } "
@@ -18,7 +18,7 @@
         >
           <i class="material-icons">compare</i>
         </div>
-      </AddToCompare>
+      </AddToCompare> -->
     </div>
     <router-link
       class="block no-underline product-link"
