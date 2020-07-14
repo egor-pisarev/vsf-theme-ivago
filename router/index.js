@@ -1,4 +1,6 @@
 const Home = () => import(/* webpackChunkName: "vsf-home" */ 'theme/pages/Home.vue')
+const HomeCategory = () => import(/* webpackChunkName: "vsf-home" */ 'theme/pages/HomeCategory.vue')
+
 const PageNotFound = () => import(/* webpackChunkName: "vsf-not-found" */ 'theme/pages/PageNotFound.vue')
 const ErrorPage = () => import(/* webpackChunkName: "vsf-error" */ 'theme/pages/Error.vue')
 const Product = () => import(/* webpackChunkName: "vsf-product" */ 'theme/pages/Product.vue')
@@ -12,7 +14,7 @@ const ResetPassword = () => import(/* webpackChunkName: "vsf-reset-password" */ 
 const CmsPageList = () => import(/* webpackChunkName: "vsf-reset-password" */ 'theme/pages/CmsPageList.vue');
 
 let routes = [
-  { name: 'home', path: '/', component: Home, alias: '/pwa.html' },
+  { name: 'home', path: '/', component: HomeCategory, alias: '/pwa.html' },
   { name: 'checkout', path: '/checkout', component: Checkout },
   { name: 'legal', path: '/legal', component: Static, props: { page: 'lorem', title: 'Legal Notice' }, meta: { title: 'Legal Notice', description: 'Legal Notice - example of description usage' } },
   { name: 'privacy', path: '/privacy', component: Static, props: { page: 'lorem', title: 'Privacy' } },

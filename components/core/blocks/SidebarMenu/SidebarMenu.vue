@@ -187,6 +187,7 @@ export default {
       return this.submenu
     },
     visibleCategories () {
+      console.log(this.categories)
       return this.categories.filter(category => {
         return category.product_count > 0 || category.children_count > 0
       })

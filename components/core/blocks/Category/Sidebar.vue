@@ -149,6 +149,8 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar {
+  position: sticky !important;
+  top: 0;
   &__header {
     justify-content: space-between;
     min-height: 47px;

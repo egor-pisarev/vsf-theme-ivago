@@ -164,7 +164,6 @@
               />
             </ul>
           </div>
-          <div class="details-overlay" @click="showDetails" />
         </div>
       </div>
     </section>
@@ -262,7 +261,7 @@ export default {
   },
   data () {
     return {
-      detailsOpen: false,
+      detailsOpen: true,
       maxQuantity: 0,
       quantityError: false,
       isStockInfoLoading: false,
