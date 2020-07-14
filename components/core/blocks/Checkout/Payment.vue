@@ -38,7 +38,7 @@
               {{ $t('Payment method') }}
             </h4>
           </div>
-          <div v-for="(method, index) in paymentMethods" :key="index" class="col-md-6">
+          <div v-for="(method, index) in getPaymentMethods" :key="index" class="col-md-6">
             <label class="radioStyled"> {{ method.title ? $t(method.title) : $t(method.name) }}
               <input
                 type="radio"
@@ -139,6 +139,9 @@ export default {
           label: item.name
         }
       })
+    },
+    getPaymentMethods () {
+      return this.paymentMethods.filter(item => item.code !== 'cashondelivery')
     }
   },
   validations () {

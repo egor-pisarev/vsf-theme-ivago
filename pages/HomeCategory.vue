@@ -1,13 +1,17 @@
 <template>
   <div id="category">
     <main-slider />
-    <div class="container p20" v-html="getHomeCmsPage.content" />
     <header class="bg-cl-secondary py35 pl20">
       <div class="container">
         <div class="row middle-sm">
-          <h1 class="col-sm-8 category-title mb10">
-            Иваго опт
-          </h1>
+          <div class="col-sm-12">
+            <h1 class="category-title">
+              {{ getHomeCmsPage.content_heading }}
+            </h1>
+          </div>
+          <div class="col-sm-8 mb10">
+            <div class="container" v-html="getHomeCmsPage.content" />
+          </div>
           <div class="sorting col-sm-2 align-right mt50">
             <label class="mr10">{{ $t('Columns') }}:</label>
             <columns @change-column="columnChange" />
@@ -100,15 +104,22 @@ import MainSlider from 'theme/components/core/blocks/MainSlider/MainSlider';
 
 const THEME_PAGE_SIZE = 50
 
+const ROOT_CATEGORY_ID = config.entities.category.categoriesRootCategorylId
+
 const homeRoute = { path: '/odezhda', query: {} }
 
 const composeInitialPageState = async (store, route, forceLoad = false) => {
   try {
     const filters = {
-      id: 61
+      id: ROOT_CATEGORY_ID
     }
     const currentCategory = await store.dispatch('category-next/loadCategory', { filters })
-    await store.dispatch('category-next/loadCategoryProducts', { route, category: currentCategory, pageSize: THEME_PAGE_SIZE })
+    await Promise.all([
+      store.dispatch('category-next/loadCategoryProducts', { route, category: currentCategory, pageSize: THEME_PAGE_SIZE }),
+      // store.dispatch('category-next/changeRouterFilterParameters', route.query),
+      store.dispatch('category-next/loadCategoryFilters', currentCategory)
+    ])
+
     const breadCrumbsLoader = store.dispatch('category-next/loadCategoryBreadcrumbs', { category: currentCategory, currentRouteName: currentCategory.name, omitCurrent: true })
     if (isServer) await breadCrumbsLoader
     catalogHooksExecutors.categoryPageVisited(currentCategory)
@@ -141,11 +152,14 @@ export default {
     ...mapGetters({
       getCurrentSearchQuery: 'category-next/getCurrentSearchQuery',
       getCategoryProducts: 'category-next/getCategoryProducts',
-      getCurrentCategory: 'category-next/getCurrentCategory',
+      // getCurrentCategory: 'category-next/getCurrentCategory',
       getCategoryProductsTotal: 'category-next/getCategoryProductsTotal',
-      getAvailableFilters: 'category-next/getAvailableFilters',
+      getFiltersMap: 'category-next/getFiltersMap',
       getCmsPages: 'cmsPage/getCmsPages'
     }),
+    getAvailableFilters () {
+      return this.getFiltersMap[ROOT_CATEGORY_ID]
+    },
     isLazyHydrateEnabled () {
       return config.ssr.lazyHydrateFor.includes('category-next.products')
     },
@@ -171,28 +185,27 @@ export default {
     ]);
   },
   async beforeRouteEnter (to, from, next) {
-    next()
-    // if (isServer) next() // SSR no need to invoke SW caching here
-    // else if (!from.name) { // SSR but client side invocation, we need to cache products and invoke requests from asyncData for offline support
-    //   next(async vm => {
-    //     vm.loading = true
-    //     if (to.name === 'home') {
-    //       await composeInitialPageState(vm.$store, { ...homeRoute, query: to.query }, true, true)
-    //       await vm.$store.dispatch('category-next/cacheProducts', { route: { ...homeRoute, query: to.query } }) // await here is because we must wait for the hydration
-    //     } else {
-    //       await composeInitialPageState(vm.$store, to, true)
-    //       await vm.$store.dispatch('category-next/cacheProducts', { route: to }) // await here is because we must wait for the hydration
-    //     }
+    if (isServer) next() // SSR no need to invoke SW caching here
+    else if (!from.name) { // SSR but client side invocation, we need to cache products and invoke requests from asyncData for offline support
+      next(async vm => {
+        vm.loading = true
+        if (to.name === 'home') {
+          await composeInitialPageState(vm.$store, { ...homeRoute, query: to.query }, true, true)
+          await vm.$store.dispatch('category-next/cacheProducts', { route: { ...homeRoute, query: to.query } }) // await here is because we must wait for the hydration
+        } else {
+          await composeInitialPageState(vm.$store, to, true)
+          await vm.$store.dispatch('category-next/cacheProducts', { route: to }) // await here is because we must wait for the hydration
+        }
 
-    //     vm.loading = false
-    //   })
-    // } else { // Pure CSR, with no initial category state
-    //   next(async vm => {
-    //     vm.loading = true
-    //     vm.$store.dispatch('category-next/cacheProducts', { route: to.name === 'home' ? homeRoute : to })
-    //     vm.loading = false
-    //   })
-    // }
+        vm.loading = false
+      })
+    } else { // Pure CSR, with no initial category state
+      next(async vm => {
+        vm.loading = true
+        vm.$store.dispatch('category-next/cacheProducts', { route: to.name === 'home' ? homeRoute : to })
+        vm.loading = false
+      })
+    }
   },
   methods: {
     openFilters () {
@@ -269,7 +282,8 @@ export default {
   }
 
   .category-title {
-    line-height: 65px;
+    font-size: 32px;
+    line-height: 35px;
   }
 
   .sorting {
@@ -287,7 +301,7 @@ export default {
   @media (max-width: 770px) {
     .category-title {
       margin: 0;
-      font-size: 20px;
+      font-size: 16px;
       line-height: 25px;
     }
 
