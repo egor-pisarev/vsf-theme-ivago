@@ -10,15 +10,6 @@
           <i class="material-icons">{{ favoriteIcon }}</i>
         </div>
       </AddToWishlist>
-      <!-- <AddToCompare :product="product">
-        <div
-          class="product__icon"
-          :class="{'product__icon--active':isOnCompare } "
-          :title="isOnCompare ? $t('Remove from compare') : $t('Add to compare')"
-        >
-          <i class="material-icons">compare</i>
-        </div>
-      </AddToCompare> -->
     </div>
     <router-link
       class="block no-underline product-link"
@@ -66,7 +57,6 @@ import { ProductTile } from '@vue-storefront/core/modules/catalog/components/Pro
 import config from 'config'
 import ProductImage from './ProductImage'
 import AddToWishlist from 'theme/components/core/blocks/Wishlist/AddToWishlist'
-import AddToCompare from 'theme/components/core/blocks/Compare/AddToCompare'
 import { IsOnWishlist } from '@vue-storefront/core/modules/wishlist/components/IsOnWishlist'
 import { IsOnCompare } from '@vue-storefront/core/modules/compare/components/IsOnCompare'
 import { currentStoreView } from '@vue-storefront/core/lib/multistore'
@@ -75,8 +65,7 @@ export default {
   mixins: [ProductTile, IsOnWishlist, IsOnCompare],
   components: {
     ProductImage,
-    AddToWishlist,
-    AddToCompare
+    AddToWishlist
   },
   props: {
     labelsActive: {

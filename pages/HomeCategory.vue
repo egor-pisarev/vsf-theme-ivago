@@ -222,9 +222,7 @@ export default {
   metaInfo () {
     const storeView = currentStoreView()
 
-    console.log(this.getHomeCmsPage)
-
-    const { content_heading, meta_description, meta_keyword, name, slug } = this.currentCategory
+    const { content_heading, meta_description, meta_keyword, name, slug } = this.getHomeCmsPage
 
     const meta = meta_description ? [
       { vmid: 'description', name: 'description', content: htmlDecode(meta_description) }

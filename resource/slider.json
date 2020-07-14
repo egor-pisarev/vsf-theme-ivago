@@ -4,7 +4,7 @@
             "subtitle": "Новая коллекция",
             "button_text": "В каталог",
             "image": "/assets/slide_01.jpg",
-            "link": "/women.html"
+            "link": "/sportivnye-kostyumy"
         },
         {
             "title": "Коллекция Зима и Лето",
@@ -18,7 +18,7 @@
             "subtitle": "Оптом",
             "button_text": "Выбрать",
             "image": "/assets/slide_03.jpg",
-            "link": "/training.html"
+            "link": "/sportivnye-kostyumy"
         }
     ],
     "total": "3"

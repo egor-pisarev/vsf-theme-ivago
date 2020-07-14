@@ -3,6 +3,7 @@
     :class="['mr10 mb5 bg-cl-transparent brdr-1 brdr-circle brdr-cl-transparent :brdr-cl-bg-primary relative inline-flex pointer color', isActive ? 'active' : '']"
     @click="$emit('change', variant)"
     :aria-label="$t('Select color ') + variant.label"
+    :title="variant.label"
   >
     <span
       class="absolute brdr-circle brdr-1 brdr-cl-secondary block color-inside"
@@ -25,7 +26,7 @@ export default {
           label = config.products.colorMappings[label]
         }
       }
-      if (label.indexOf('/') >= 0) label = label.replace('/', ',') // to be honest - this is a hack for colors like "ink/white"
+      if (label.indexOf('/') >= 0) label = label.replace('/', ',').replace('-', ',') // to be honest - this is a hack for colors like "ink/white"
       if (label && label.toString().indexOf(',') >= 0) {
         return 'background: linear-gradient(' + label + ')'
       } else {
