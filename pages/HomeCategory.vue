@@ -113,7 +113,13 @@ const composeInitialPageState = async (store, route, forceLoad = false) => {
     const filters = {
       id: ROOT_CATEGORY_ID
     }
+
+    console.log(filters)
+
     const currentCategory = await store.dispatch('category-next/loadCategory', { filters })
+
+    console.log(currentCategory)
+
     await Promise.all([
       store.dispatch('category-next/loadCategoryProducts', { route, category: currentCategory, pageSize: THEME_PAGE_SIZE }),
       // store.dispatch('category-next/changeRouterFilterParameters', route.query),
