@@ -18,8 +18,12 @@
     >
       <div
         class="product-cover bg-cl-secondary"
-        :class="[{ sale: labelsActive && isOnSale }, { new: labelsActive && isNew }]"
       >
+        <ul class="product-labels">
+          <li v-for="(item, index) in labels" :key="index" :class="item.class">
+            {{ item.label }}
+          </li>
+        </ul>
         <product-image
           class="product-cover__thumb"
           :image="thumbnailObj"
@@ -89,6 +93,28 @@ export default {
     },
     storeView () {
       return currentStoreView()
+    },
+    labels () {
+      let labels = []
+      if (this.product.attribute_10003) {
+        labels.push({ label: 'Большие размеры', class: 'big-sizes' })
+      }
+      if (this.product.attribute_10005) {
+        labels.push({ label: 'Летняя коллекция', class: 'summer' })
+      }
+      if (this.product.attribute_10004) {
+        labels.push({ label: 'Зимняя коллекция', class: 'winter' })
+      }
+      if (this.product.attribute_10002) {
+        labels.push({ label: 'Хит продаж', class: 'hit' })
+      }
+      if ([true, '1'].includes(this.product.new)) {
+        labels.push({ label: 'Новинка', class: 'new' })
+      }
+      if ([true, '1'].includes(this.product.sale)) {
+        labels.push({ label: 'Распродажа', class: 'sale' })
+      }
+      return labels
     }
   },
   methods: {
@@ -170,6 +196,40 @@ $color-white: color(white);
   }
 }
 
+.product-labels {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  list-style: none;
+  text-align: left;
+  padding-left: 0px;
+  margin: 0px;
+  font-size: 12px;
+  color: #fff;
+  z-index: 1;
+  li {
+    background-color: #000000dd;
+    margin-top: 5px;
+    padding: 5px;
+    &.new {
+      background-color: #09af17dd;
+    }
+    &.sale {
+      background-color: #af097ddd;
+    }
+    &.winter {
+      background-color: #fff;
+      color: #000;
+    }
+    &.summer {
+      background-color: rgb(223, 219, 2);
+    }
+    &.hit {
+      background-color: rgb(223, 72, 2);
+    }
+  }
+}
+
 .price-original {
   text-decoration: line-through;
 }
@@ -197,7 +257,7 @@ $color-white: color(white);
     @media screen and (min-width: 768px) {
       padding-bottom: calc(300% / (276.5 / 115));
     }
-    opacity: 0.8;
+    opacity: 1;
     will-change: opacity, transform;
     transition: 0.3s opacity $motion-main, 0.3s transform $motion-main;
   }
@@ -212,19 +272,6 @@ $color-white: color(white);
       &.new::after {
         opacity: 0.8;
       }
-    }
-  }
-
-  &.sale {
-    &::after {
-      @extend %label;
-      content: 'Sale';
-    }
-  }
-  &.new {
-    &::after {
-      @extend %label;
-      content: 'New';
     }
   }
 }
