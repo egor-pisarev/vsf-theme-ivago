@@ -7,7 +7,7 @@
             <div class="start-md">
               <router-link
                 class="cl-secondary pl-10 m-20"
-                :to="localizedRoute('/i/about-us')"
+                :to="localizedRoute('/i/about_us')"
                 exact
               >
                 {{ $t('About Us') }}

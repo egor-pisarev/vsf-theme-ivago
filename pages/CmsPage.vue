@@ -47,9 +47,6 @@ export default {
       return this.cmsPageItem ? this.cmsPageItem.meta_keywords : ''
     },
     cmsPageItem () {
-      console.log(this.$route.params.slug)
-      console.log(this.$store.state.cmsPage.items)
-      console.log(this.$store.state.cmsPage.items.find(i => i.identifier === this.$route.params.slug))
       return this.$store.state.cmsPage.items.find(i => i.identifier === this.$route.params.slug)
     },
     activeComponent () {
