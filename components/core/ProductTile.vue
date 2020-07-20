@@ -97,22 +97,22 @@ export default {
     labels () {
       let labels = []
       if (this.product.attribute_10003) {
-        labels.push({ label: 'Большие размеры', class: 'big-sizes' })
+        labels.push({ label: 'Big Size', class: 'big-sizes' })
       }
       if (this.product.attribute_10005) {
-        labels.push({ label: 'Летняя коллекция', class: 'summer' })
+        labels.push({ label: 'Лето', class: 'summer' })
       }
       if (this.product.attribute_10004) {
-        labels.push({ label: 'Зимняя коллекция', class: 'winter' })
+        labels.push({ label: 'Зима', class: 'winter' })
       }
       if (this.product.attribute_10002) {
-        labels.push({ label: 'Хит продаж', class: 'hit' })
+        labels.push({ label: 'Hit', class: 'hit' })
       }
       if ([true, '1'].includes(this.product.new)) {
-        labels.push({ label: 'Новинка', class: 'new' })
+        labels.push({ label: 'New', class: 'new' })
       }
       if ([true, '1'].includes(this.product.sale)) {
-        labels.push({ label: 'Распродажа', class: 'sale' })
+        labels.push({ label: 'Sale', class: 'sale' })
       }
       return labels
     }
