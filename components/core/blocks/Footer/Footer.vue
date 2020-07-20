@@ -5,29 +5,31 @@
         <div class="row m0 center-xs between-md">
           <div class="row m0 col-lg-7 col-md-8 col-xs-12 start-md between-md between-xs no-mobile">
             <div class="start-md">
-              <h3 class="cl-accent weight-400">{{ $t('Information') }}</h3>
-              <div class="mt15">
-                <router-link
-                  class="cl-secondary"
-                  :to="localizedRoute('/about-us')"
-                  exact
-                >{{ $t('About Us') }}</router-link>
-              </div>
-              <div class="mt15">
-                <router-link
-                  class="cl-secondary"
-                  :to="localizedRoute('/news')"
-                  exact
-                >{{ $t('News') }}</router-link>
-              </div>
-              <div class="mt15">
-                <router-link
-                  class="cl-secondary"
-                  :to="localizedRoute('/contacts')"
-                  exact
-                >{{ $t('Contacts') }}</router-link>
-              </div>
+              <router-link
+                class="cl-secondary pl-10 m-20"
+                :to="localizedRoute('/i/about-us')"
+                exact
+              >
+                {{ $t('About Us') }}
+              </router-link>
+              <router-link
+                class="cl-secondary pl-10 m-20"
+                :to="localizedRoute('/news')"
+                exact
+              >
+                {{ $t('News') }}
+              </router-link>
+              <router-link
+                class="cl-secondary pl-10 m-20"
+                :to="localizedRoute('/i/contacts')"
+                exact
+              >
+                {{ $t('Contacts') }}
+              </router-link>
             </div>
+          </div>
+          <div class="col-lg-5 col-md-8 col-xs-12 start-md between-md between-xs m-20">
+            Создание сайта <a href="https://plusmarketing.ru">plusmarketing.ru</a>
           </div>
         </div>
       </div>
@@ -39,20 +41,17 @@
         </div>
         <div class="col-xs col-sm-9 end-xs">
           <ul class="pl0 links" data-testid="bottomLinks">
-            <li class="footer__version-info">{{ getVersionInfo }}</li>
-            <li class="inline-flex">
-              <router-link
-                class="cl-tertiary mr10 underline"
-                to="/legal"
-                exact
-              >{{ $t('Legal notice') }}</router-link>
+            <li class="footer__version-info">
+              {{ getVersionInfo }}
             </li>
             <li class="inline-flex">
               <router-link
                 class="cl-tertiary underline"
-                to="/privacy"
+                to="/i/privacy"
                 exact
-              >{{ $t('Privacy policy') }}</router-link>
+              >
+                {{ $t('Privacy policy') }}
+              </router-link>
             </li>
           </ul>
         </div>
@@ -81,37 +80,37 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
 import {
   currentStoreView,
   localizedRoute
-} from "@vue-storefront/core/lib/multistore";
-import CurrentPage from "theme/mixins/currentPage";
-import LanguageSwitcher from "../../LanguageSwitcher.vue";
-import Newsletter from "theme/components/core/blocks/Footer/Newsletter";
-import BackToTop from "theme/components/core/BackToTop";
-import { getPathForStaticPage } from "theme/helpers";
-import config from "config";
+} from '@vue-storefront/core/lib/multistore';
+import CurrentPage from 'theme/mixins/currentPage';
+import LanguageSwitcher from '../../LanguageSwitcher.vue';
+import Newsletter from 'theme/components/core/blocks/Footer/Newsletter';
+import BackToTop from 'theme/components/core/BackToTop';
+import { getPathForStaticPage } from 'theme/helpers';
+import config from 'config';
 
 export default {
   mixins: [CurrentPage],
-  name: "MainFooter",
+  name: 'MainFooter',
   methods: {
-    goToAccount() {
-      this.$bus.$emit("modal-toggle", "modal-signup");
+    goToAccount () {
+      this.$bus.$emit('modal-toggle', 'modal-signup');
     },
-    getLinkFor(path) {
+    getLinkFor (path) {
       return localizedRoute(getPathForStaticPage(path));
     }
   },
   computed: {
     ...mapGetters({
-      isLogged: "user/isLoggedIn"
+      isLogged: 'user/isLoggedIn'
     }),
-    multistoreEnabled() {
+    multistoreEnabled () {
       return config.storeViews.multistore;
     },
-    getVersionInfo() {
+    getVersionInfo () {
       return `v${process.env.__APPVERSION__} ${process.env.__BUILDTIME__}`;
     }
   },

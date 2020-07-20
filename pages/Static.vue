@@ -68,9 +68,7 @@ export default {
     return {
       navigation: [
         { title: i18n.t('About us'), link: getPathForStaticPage('/about-us'), component: StaticExample },
-        { title: i18n.t('Customer service'), link: getPathForStaticPage('/customer-service'), component: StaticShortExample },
-        { title: i18n.t('Store locator'), link: localizedRoute('/store-locator'), component: StaticExample },
-        { title: i18n.t('Delivery'), link: '/delivery', component: StaticShortExample },
+        { title: i18n.t('Payment and delivery'), link: '/payment-and-delivery', component: StaticShortExample },
         { title: i18n.t('Return policy'), link: '/returns', component: StaticExample },
         { title: i18n.t('Privacy policy'), link: '/privacy', component: StaticShortExample },
         { title: i18n.t('Size guide'), link: '/size-guide', component: StaticExample },

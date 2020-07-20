@@ -9,7 +9,7 @@
     </header>
     <div class="container">
       <article v-for="item in newsList" :key="item.id">
-        <router-link class="block no-underline product-link" :to="`news/${item.identifier}`">
+        <router-link class="block no-underline product-link" :to="`news/i/${item.identifier}`">
           <h2>{{ item.title }}</h2>
           <p>{{ item.meta_description }}</p>
         </router-link>
@@ -19,23 +19,23 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { Logger } from "@vue-storefront/core/lib/logger";
+import { mapGetters } from 'vuex';
+import { Logger } from '@vue-storefront/core/lib/logger';
 
 export default {
   computed: {
     ...mapGetters({
-      getList: "cmsPage/getCmsPages"
+      getList: 'cmsPage/getCmsPages'
     }),
     newsList () {
       return this.getList.filter(
         item =>
           [
-            "about_us",
-            "payment-and-shipping",
-            "terms",
-            "privacy",
-            "home"
+            'about_us',
+            'payment-and-shipping',
+            'terms',
+            'privacy',
+            'home'
           ].indexOf(item.identifier) < 0
       )
     }
@@ -44,7 +44,7 @@ export default {
     return new Promise((resolve, reject) => {
       if (context) context.output.cacheTags.add(`cmsPage`);
       store
-        .dispatch("cmsPage/list", {})
+        .dispatch('cmsPage/list', {})
         .then(pages => {
           resolve(pages);
         })
