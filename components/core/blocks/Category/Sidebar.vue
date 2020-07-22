@@ -55,18 +55,11 @@
           @change="$emit('changeFilter', $event)"
         />
       </div>
-      <div v-else-if="filterIndex==='attribute_10002'||filterIndex==='attribute_10003'||filterIndex==='attribute_10004'" class="sidebar__inline-selecors">
+      <div v-else-if="filterIndex==='sale' || filterIndex==='new' || filterIndex==='attribute_10002' || filterIndex==='attribute_10003' || filterIndex==='attribute_10004'" class="sidebar__inline-selecors">
         <yes-no-selector
           context="category"
           class="price-select mb10 block"
-          code="price"
-          v-for="(price, index) in filter"
-          :key="index"
-          :id="price.id"
-          :from="price.from"
-          :to="price.to"
-          :content="price.label"
-          :variant="price"
+          :code="filterIndex"
           :selected-filters="getCurrentFilters"
           @change="$emit('changeFilter', $event)"
         />
