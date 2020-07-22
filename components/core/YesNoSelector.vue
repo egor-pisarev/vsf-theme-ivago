@@ -17,7 +17,7 @@ export default {
   mixins: [filterMixin],
   computed: {
     label () {
-      return this.variant.label === '0' ? i18n.t('No') : i18n.t('Choose');
+      return this.variant.label === '0' ? i18n.t('Exclude') : i18n.t('Choose');
     }
   }
 };

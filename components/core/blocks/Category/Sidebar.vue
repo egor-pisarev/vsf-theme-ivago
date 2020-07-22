@@ -60,6 +60,9 @@
           context="category"
           class="price-select mb10 block"
           :code="filterIndex"
+          v-for="(option, index) in filter"
+          :key="index"
+          :variant="option"
           :selected-filters="getCurrentFilters"
           @change="$emit('changeFilter', $event)"
         />

@@ -108,10 +108,10 @@ export default {
       if (this.product.attribute_10002) {
         labels.push({ label: 'Hit', class: 'hit' })
       }
-      if ([true, '1'].includes(this.product.new)) {
+      if ([true, 1].includes(this.product.new)) {
         labels.push({ label: 'New', class: 'new' })
       }
-      if ([true, '1'].includes(this.product.sale)) {
+      if ([true, 1].includes(this.product.sale)) {
         labels.push({ label: 'Sale', class: 'sale' })
       }
       return labels
