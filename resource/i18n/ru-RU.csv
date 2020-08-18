@@ -253,7 +253,7 @@
 "Contacts","Контакты"
 "About Us","О компании"
 "Information","Информация"
-"Cash on delivery","Оплата при доставке"
+"Cash on delivery","Предоплата"
 "Payment Information","Информация об оплате"
 "You are going to pay for this order by bank transfer.","Подробности оплаты сообщит наш менеджер."
 "Order confirmation","Заказ принят в обработку"
@@ -272,4 +272,5 @@
 "sale_filter","Sale"
 "new_filter","New"
 "Exclude","Исключить"
+"Оплата при доставке","Предоплата"
 

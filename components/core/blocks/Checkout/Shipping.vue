@@ -338,7 +338,15 @@ export default {
       city: {
         required,
         unicodeAlpha
-      }
+      },
+      state: {
+        required,
+        unicodeAlpha
+      },
+      phoneNumber: {
+        required,
+        unicodeAlphaNum
+      },
     }
   }
 }
