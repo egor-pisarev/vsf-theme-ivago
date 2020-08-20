@@ -12,7 +12,7 @@ export default {
     { name: 'mobile-web-app-capable', content: 'yes' },
     { name: 'theme-color', content: '#ffffff' },
     { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
-    {name: 'yandex-verification', content: '0cfcbabc67d623e4'}
+    { name: 'yandex-verification', content: '0cfcbabc67d623e4' }
   ],
   link: [
     { rel: 'icon', type: 'image/png', href: '/assets/favicon-32x32.png', sizes: '32x32' },
