@@ -6,12 +6,13 @@ export default {
   },
   meta: [
     { charset: 'utf-8' },
-    { vmid: 'description', name: 'description', content: 'Vue Storefront is a standalone PWA storefront for your eCommerce, possible to connect with any eCommerce backend (eg. Magento, Prestashop or Shopware) through the API.' },
+    { vmid: 'description', name: 'description', content: 'Иваго - интернет магазин одежды в спортивном стиле для мужчин и женщин. Наша компания работает на Российском рынке текстиля более 20 лет.' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1, minimal-ui' },
     { name: 'robots', content: 'index, follow' },
     { name: 'mobile-web-app-capable', content: 'yes' },
     { name: 'theme-color', content: '#ffffff' },
-    { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' }
+    { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
+    {name: 'yandex-verification', content: '0cfcbabc67d623e4'}
   ],
   link: [
     { rel: 'icon', type: 'image/png', href: '/assets/favicon-32x32.png', sizes: '32x32' },
