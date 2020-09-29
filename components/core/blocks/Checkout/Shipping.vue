@@ -128,7 +128,7 @@
             class="col-xs-12 col-sm-6 mb10"
             type="text"
             name="state"
-            :placeholder="$t('State / Province')"
+            :placeholder="$t('State / Province *')"
             v-model.trim="shipping.state"
             autocomplete="address-level1"
           />
