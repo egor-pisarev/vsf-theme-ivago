@@ -9,7 +9,7 @@
         {{ price.default | price(storeView) }}
     </div>
 
-    <span class="price-single">{{ price.single | price(storeView) }}</span> за шт.
+    <span class="price-single" v-if="price.single > 0">{{ price.single | price(storeView) }} за шт.</span>
 </div>
 </template>
 
