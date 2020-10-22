@@ -1,6 +1,6 @@
 export default {
   title: 'Иваго',
-  titleTemplate: '%s - Vue Storefront',
+  titleTemplate: '%s - Ivago оптом',
   htmlAttrs: {
     lang: 'ru'
   },
