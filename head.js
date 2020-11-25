@@ -1,6 +1,6 @@
 export default {
   title: 'Иваго',
-  titleTemplate: '%s - Ivago оптом',
+  titleTemplate: '%s',
   htmlAttrs: {
     lang: 'ru'
   },

@@ -11,13 +11,13 @@
   bottom: 10px;
   z-index: 100;
   img {
-    width: 78px;
+    width: 100px;
     transition: width 0.3s, height 0.3s;
   }
   &:hover {
     text-decoration: none;
     img {
-      width: 95px;
+      width: 120px;
     }
     &:after {
       background: none;

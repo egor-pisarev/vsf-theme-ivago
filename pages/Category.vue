@@ -4,8 +4,8 @@
         <div class="container">
             <breadcrumbs />
             <div class="row middle-sm">
-                <h1 class="col-sm-8 category-title mb10">
-                    {{ getCurrentCategory.name }}
+                <h1 class="col-sm-8 category-title mb10" style="font-size: 28px;">
+                    {{ getCurrentCategory.name }} оптом Турция | Ivago
                 </h1>
                 <div class="sorting col-sm-2 align-right mt50">
                     <label class="mr10">{{ $t('Columns') }}:</label>
@@ -219,7 +219,6 @@ export default {
     },
     metaInfo() {
         const storeView = currentStoreView()
-        console.log(this.getCurrentCategory)
         const {
             meta_title,
             meta_description,
@@ -233,7 +232,7 @@ export default {
         }] : [{
             vmid: 'description',
             name: 'description',
-            content: `${this.getCurrentCategory.name} Иваго оптом`
+            content: `${this.getCurrentCategory.name} оптом от производителя Ivago | Турция`
         }]
         /* const categoryLocaliedLink = localizedRoute({
           name: 'category-amp',
@@ -243,7 +242,7 @@ export default {
 
         return {
             // link: [ { rel: 'amphtml', href: ampCategoryLink } ],
-            title: htmlDecode(meta_title || name),
+            title: htmlDecode(`${this.getCurrentCategory.name} оптом Турция | Ivago`),
             meta
         }
     }

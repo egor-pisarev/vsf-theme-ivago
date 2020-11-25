@@ -9,8 +9,8 @@
                 <div class="col-xs-12 col-md-5 data">
                     <breadcrumbs class="pt40 pb20 hidden-xs" />
                     <h1 class="mb20 mt0 cl-mine-shaft product-name" data-testid="productName">
-                        {{ getCurrentProduct.name | htmlDecode }}
-                        <web-share :title="getCurrentProduct.name | htmlDecode" text="Check this product!" class="web-share" />
+                        {{ `${getCurrentProduct.name} оптом` | htmlDecode }}
+                        <web-share :title="`${getCurrentProduct.name} оптом` | htmlDecode" text="Check this product!" class="web-share" />
                     </h1>
                     <div class="mb20 uppercase cl-secondary" :content="getCurrentProduct.sku">
                         {{ $t('SKU: {sku}', { sku: getCurrentProduct.sku }) }}
@@ -364,7 +364,7 @@ export default {
           }, storeView.storeCode)).href
         }
       ], */
-      title: htmlDecode(this.getCurrentProduct.meta_title || this.getCurrentProduct.name),
+      title: htmlDecode(`${this.getCurrentProduct.name} оптом`),
       meta: this.getCurrentProduct.meta_description ? [{ vmid: 'description', name: 'description', content: htmlDecode(this.getCurrentProduct.meta_description) }] : [
         {
             vmid: 'description',
