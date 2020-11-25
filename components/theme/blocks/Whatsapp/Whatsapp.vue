@@ -7,7 +7,7 @@
 .whatsapp-link {
   display: block;
   position: fixed;
-  left: 10px;
+  right: 10px;
   bottom: 10px;
   z-index: 100;
   img {
