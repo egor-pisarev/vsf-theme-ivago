@@ -211,6 +211,9 @@ export default {
       &:after {
         background-color: transparent;
       }
+      .material-icons {
+        font-size: 64px;
+      }
     }
   }
 }
