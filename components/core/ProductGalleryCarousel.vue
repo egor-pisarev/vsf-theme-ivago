@@ -212,7 +212,7 @@ export default {
         background-color: transparent;
       }
       .material-icons {
-        font-size: 64px;
+        font-size: 84px;
       }
     }
   }
